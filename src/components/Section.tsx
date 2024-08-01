@@ -2,7 +2,7 @@ import SearchBox from "./SearchBox";
 
 const Section = () => {
   return (
-    <section>
+    <section className="grid place-content-center h-96">
       <SearchBox />
     </section>
   );

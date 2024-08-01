@@ -29,9 +29,8 @@ const CarsContainer = () => {
             }
           );
 
-          const rData = response.data;
+          const rData: CarInterface[] = response.data.cars;
 
-          console.log(rData);
           setCars(rData);
         } else {
           console.log("No token found in localStorage");
@@ -56,7 +55,6 @@ const CarsContainer = () => {
             <p>{car.make}</p>
             <p>{car.release}</p>
             <p>{car.origin}</p>
-            <img src={car.image} alt={car.name} />
           </div>
         ))
       ) : (

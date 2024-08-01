@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import Header from "../../components/Header";
+import Section from "../../components/Section";
 
 const Autobase = () => {
   const navigate = useNavigate();
@@ -9,7 +11,8 @@ const Autobase = () => {
 
   return (
     <div>
-      <button onClick={handleLogout}>logout</button>
+      <Header onLogout={handleLogout} />
+      <Section />
     </div>
   );
 };

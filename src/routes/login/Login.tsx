@@ -1,7 +1,8 @@
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 interface FormFields {
   username: string;
@@ -9,6 +10,8 @@ interface FormFields {
 }
 
 const Login = () => {
+  const [processing, setProcessing] = useState<boolean>(false);
+  const [errMsg, setErrMsg] = useState<string | null>(null);
   const navigate = useNavigate();
   const {
     register,
@@ -17,16 +20,24 @@ const Login = () => {
   } = useForm<FormFields>();
 
   const onSubmit = async (data: FormFields) => {
-    const response = await axios.post(
-      "https://cars.development.ims.cx/login",
-      data
-    );
+    setProcessing(true);
+    try {
+      const response = await axios.post(
+        "https://cars.development.ims.cx/login",
+        data
+      );
 
-    const responseData = response.data;
+      const responseData = response.data;
 
-    localStorage.setItem("autobase", `Bearer ${responseData.user.token}`);
-
-    navigate("/");
+      if (responseData) {
+        localStorage.setItem("autobase", `Bearer ${responseData.user.token}`);
+        navigate("/");
+      }
+    } catch (error) {
+      setErrMsg("Incorrect username/password");
+    } finally {
+      setProcessing(false);
+    }
   };
 
   useEffect(() => {
@@ -36,9 +47,12 @@ const Login = () => {
   }, [navigate]);
 
   return (
-    <section className="grid place-content-center h-screen">
+    <section className="grid h-screen place-content-center">
+      <Helmet>
+        <title>Login - Autobase</title>
+      </Helmet>
       <div className="flex flex-col items-center gap-6">
-        <h1 className="text-white text-6xl font-bold">Log In.</h1>
+        <h1 className="text-6xl font-bold text-white">Log In.</h1>
         <div className="md:h-80 md:w-[550px] rounded-lg bg-white grid place-content-center">
           <form
             className="flex flex-col items-center gap-4"
@@ -58,11 +72,15 @@ const Login = () => {
             />
             <button
               type="submit"
-              className="bg-neutral-700 w-96 py-1 rounded-md"
+              className="py-1 rounded-md bg-neutral-700 w-96"
+              disabled={processing} // Disable the button while processing
             >
-              LOG IN
+              {processing ? "Processing..." : "LOG IN"}
             </button>
-            {(errors.username || errors.password) && <p>Invalid input</p>}
+            {(errors.username || errors.password) && (
+              <p className="text-red-500">Invalid input</p>
+            )}
+            {errMsg && <p>{errMsg}</p>}
           </form>
         </div>
       </div>

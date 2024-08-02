@@ -27,7 +27,6 @@ const CarsContainer = () => {
       try {
         const token = localStorage.getItem("autobase");
         const API_URL = `https://cars.development.ims.cx/cars?releaseFrom=${releaseFrom}&releaseTo=${releaseTo}&make=${selectedMake}&origin=${selectedOrigin}&search=${input}`;
-        console.log(API_URL);
         if (token) {
           const response = await axios.get(API_URL, {
             headers: {
@@ -49,7 +48,14 @@ const CarsContainer = () => {
     };
 
     fetchCars();
-  }, [input, selectedMake, selectedOrigin, selectedYear]);
+  }, [
+    input,
+    releaseFrom,
+    releaseTo,
+    selectedMake,
+    selectedOrigin,
+    selectedYear,
+  ]);
 
   return (
     <div>

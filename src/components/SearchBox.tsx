@@ -18,7 +18,6 @@ const SearchBox = () => {
   const { selectedYear, setSelectedYear } = useYearStore();
 
   const years: YearsInterface[] = [
-    { year: "All years", value: "" },
     { year: "2020s", value: "2020" },
     { year: "2010s", value: "2010" },
     { year: "2000s", value: "2000" },

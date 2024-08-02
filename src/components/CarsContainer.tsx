@@ -59,10 +59,10 @@ const CarsContainer = () => {
   ]);
 
   return (
-    <div>
+    <div className="px-3 md:px-0">
       <div className="flex justify-center">
-        <div className="grid h-24 bg-white w-96 md:w-[700px] rounded-b-lg place-content-center mb-20">
-          <p className="font-mono text-4xl font-extrabold text-black">
+        <div className="grid h-24 px-10 bg-white w-80 md:w-[700px] rounded-b-lg place-content-center mb-20">
+          <p className="font-mono text-4xl font-extrabold text-center text-black">
             {cars.length} cars found:
           </p>
         </div>
@@ -70,7 +70,7 @@ const CarsContainer = () => {
       <div className="grid grid-cols-1 gap-5 px-5 text-white md:grid-cols-2 lg:grid-cols-3">
         {error && <p>{error}</p>}
         {cars.length > 0 ? (
-          cars.map((car) => <Car {...car} />)
+          cars.map((car) => <Car key={car._id} {...car} />)
         ) : (
           <p>No cars available</p>
         )}

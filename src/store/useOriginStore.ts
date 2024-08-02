@@ -1,11 +1,15 @@
 import { create } from "zustand";
 
-interface OriginState {
+interface OriginStoreState {
   origins: string[];
-  setOrigins: (value: string[]) => void;
+  selectedOrigin: string;
+  setOrigins: (origins: string[]) => void;
+  setSelectedOrigin: (origin: string) => void;
 }
 
-export const useOriginStore = create<OriginState>((set) => ({
+export const useOriginStore = create<OriginStoreState>((set) => ({
   origins: [],
-  setOrigins: (value) => set({ origins: value }),
+  selectedOrigin: "",
+  setOrigins: (origins) => set({ origins }),
+  setSelectedOrigin: (origin) => set({ selectedOrigin: origin }),
 }));

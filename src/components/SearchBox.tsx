@@ -1,8 +1,9 @@
 import { ChangeEvent, useEffect } from "react";
 import { useSearchStore } from "../store/useSearchStore";
 import { useMakesStore } from "../store/useMakesStore";
-import axios from "axios";
 import { useOriginStore } from "../store/useOriginStore";
+import { useYearStore } from "../store/useYearStore";
+import axios from "axios";
 
 interface YearsInterface {
   year: string;
@@ -11,51 +12,37 @@ interface YearsInterface {
 
 const SearchBox = () => {
   const { input, setInput } = useSearchStore();
-  const { makes, setMakes } = useMakesStore();
-  const { origins, setOrigins } = useOriginStore();
+  const { makes, setMakes, selectedMake, setSelectedMake } = useMakesStore();
+  const { origins, setOrigins, selectedOrigin, setSelectedOrigin } =
+    useOriginStore();
+  const { selectedYear, setSelectedYear } = useYearStore();
 
   const years: YearsInterface[] = [
-    {
-      year: "All years",
-      value: "",
-    },
-    {
-      year: "2020s",
-      value: "2020",
-    },
-    {
-      year: "2010s",
-      value: "2010",
-    },
-    {
-      year: "2000s",
-      value: "2000",
-    },
-    {
-      year: "1990s",
-      value: "1990",
-    },
-    {
-      year: "1980s",
-      value: "1980",
-    },
-    {
-      year: "1970s",
-      value: "1970",
-    },
-    {
-      year: "1960s",
-      value: "1960",
-    },
-    {
-      year: "1950s and older",
-      value: "1950",
-    },
+    { year: "All years", value: "" },
+    { year: "2020s", value: "2020" },
+    { year: "2010s", value: "2010" },
+    { year: "2000s", value: "2000" },
+    { year: "1990s", value: "1990" },
+    { year: "1980s", value: "1980" },
+    { year: "1970s", value: "1970" },
+    { year: "1960s", value: "1960" },
+    { year: "1950s and older", value: "1950" },
   ];
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
-    console.log(input);
+  };
+
+  const handleMakeChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedMake(e.target.value);
+  };
+
+  const handleOriginChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedOrigin(e.target.value);
+  };
+
+  const handleYearChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedYear(e.target.value);
   };
 
   useEffect(() => {
@@ -111,7 +98,8 @@ const SearchBox = () => {
         value={input}
         onChange={handleChange}
       />
-      <select>
+      <select value={selectedMake} onChange={handleMakeChange}>
+        <option value="">All makes</option>
         {makes &&
           makes.map((make, index) => (
             <option key={index} value={make}>
@@ -119,20 +107,22 @@ const SearchBox = () => {
             </option>
           ))}
       </select>
-      <select>
+      <select value={selectedYear} onChange={handleYearChange}>
+        <option value="">All years</option>
+        {years.map((year) => (
+          <option key={year.year} value={year.value}>
+            {year.year}
+          </option>
+        ))}
+      </select>
+      <select value={selectedOrigin} onChange={handleOriginChange}>
+        <option value="">All origins</option>
         {origins &&
           origins.map((origin, index) => (
             <option key={index} value={origin}>
               {origin}
             </option>
           ))}
-      </select>
-      <select>
-        {years.map((year) => (
-          <option key={year.year} value={year.value}>
-            {year.year}
-          </option>
-        ))}
       </select>
     </div>
   );

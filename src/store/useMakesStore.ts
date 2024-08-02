@@ -1,11 +1,15 @@
 import { create } from "zustand";
 
-interface MakesState {
+interface MakesStoreState {
   makes: string[];
-  setMakes: (value: string[]) => void;
+  selectedMake: string;
+  setMakes: (makes: string[]) => void;
+  setSelectedMake: (make: string) => void;
 }
 
-export const useMakesStore = create<MakesState>((set) => ({
+export const useMakesStore = create<MakesStoreState>((set) => ({
   makes: [],
-  setMakes: (value) => set({ makes: value }),
+  selectedMake: "",
+  setMakes: (makes) => set({ makes }),
+  setSelectedMake: (make) => set({ selectedMake: make }),
 }));

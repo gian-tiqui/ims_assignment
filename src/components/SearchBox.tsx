@@ -96,6 +96,7 @@ const SearchBox = () => {
         placeholder="I am looking for a..."
         value={input}
         onChange={handleChange}
+        className={`w-64 font-normal md:w-full pb-1 text-xl md:font-semibold text-center text-gray-600 placeholder-gray-600 bg-transparent border-b-2 border-transparent focus:outline-none boreder-b border-b-white`}
       />
       <select value={selectedMake} onChange={handleMakeChange}>
         <option value="">All makes</option>

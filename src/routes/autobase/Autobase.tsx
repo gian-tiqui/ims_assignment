@@ -3,6 +3,7 @@ import Header from "../../components/Header";
 import Section from "../../components/Section";
 import CarsContainer from "../../components/CarsContainer";
 import { Helmet } from "react-helmet";
+import Footer from "../../components/Footer";
 
 const Autobase = () => {
   const navigate = useNavigate();
@@ -19,9 +20,9 @@ const Autobase = () => {
       <Header onLogout={handleLogout} />
       <Section />
       <CarsContainer />
+      <Footer />
     </div>
   );
 };
 
 export default Autobase;
-//dev

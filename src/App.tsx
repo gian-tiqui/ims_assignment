@@ -4,7 +4,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   return (
-    <div className="bg-neutral-800 h-screen">
+    <main className="h-full min-h-screen bg-neutral-800">
       <Routes>
         {routeMapping.map((routeMap) => (
           <Route
@@ -20,7 +20,7 @@ const App = () => {
           />
         ))}
       </Routes>
-    </div>
+    </main>
   );
 };
 

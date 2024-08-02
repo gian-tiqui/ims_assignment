@@ -1,3 +1,5 @@
+import autobaseLogo from "../assets/autobaselogo.png";
+
 interface HeaderProps {
   onLogout: () => void;
 }
@@ -8,9 +10,9 @@ const Header: React.FC<HeaderProps> = ({ onLogout }) => {
       <button onClick={onLogout} className="text-xl font-semibold text-white">
         Log Out
       </button>
-      <div className="flex gap-2">
-        <p className="text-white">I am logo</p>
-        <p className="text-2xl font-bold text-white">AUTOBASE</p>
+      <div className="flex items-center gap-2">
+        <img src={autobaseLogo} alt="Autobase" />
+        <p className="font-sans text-2xl font-bold text-white">AUTOBASE</p>
       </div>
       <div></div>
     </header>

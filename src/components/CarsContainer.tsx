@@ -4,8 +4,9 @@ import { useSearchStore } from "../store/useSearchStore";
 import { useMakesStore } from "../store/useMakesStore";
 import { useOriginStore } from "../store/useOriginStore";
 import { useYearStore } from "../store/useYearStore";
+import Car from "./Car";
 
-interface CarInterface {
+export interface CarInterface {
   _id: string;
   name: string;
   make: string;
@@ -59,37 +60,17 @@ const CarsContainer = () => {
 
   return (
     <div>
-      <p className="text-white">{cars.length} cars found</p>
-      <div className="flex flex-wrap gap-5 text-white">
+      <div className="flex justify-center">
+        <div className="grid h-24 bg-white w-96 md:w-[700px] rounded-b-lg place-content-center mb-20">
+          <p className="font-mono text-4xl font-extrabold text-black">
+            {cars.length} cars found:
+          </p>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 gap-5 px-5 text-white md:grid-cols-2 lg:grid-cols-3">
         {error && <p>{error}</p>}
         {cars.length > 0 ? (
-          cars.map((car) => (
-            <div
-              key={car._id}
-              className="flex flex-col items-center p-5 bg-black rounded-lg"
-            >
-              <section className="flex justify-between w-full">
-                <h2>{car.name}</h2>
-                <img
-                  className="w-auto h-8 rounded-lg"
-                  src={`https://cars.development.ims.cx/assets/icons/flag-${car.origin}.svg`}
-                  alt={car.origin}
-                ></img>
-              </section>
-
-              <div className="grid bg-gray-700 rounded-lg w-44 h-44 place-content-center">
-                <img
-                  className="w-auto h-20"
-                  src={`https://cars.development.ims.cx/assets/images/${car.image}`}
-                  alt={car.name}
-                ></img>
-              </div>
-              <p>Make</p>
-              <p>{car.make}</p>
-              <p>Year</p>
-              <p>{car.release}</p>
-            </div>
-          ))
+          cars.map((car) => <Car {...car} />)
         ) : (
           <p>No cars available</p>
         )}

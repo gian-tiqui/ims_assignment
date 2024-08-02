@@ -4,7 +4,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ onLogout }) => {
   return (
-    <header className="flex flex-row-reverse items-center h-28 justify-evenly">
+    <header className="flex flex-row-reverse items-center justify-between px-5 h-28">
       <button onClick={onLogout} className="text-xl font-semibold text-white">
         Log Out
       </button>

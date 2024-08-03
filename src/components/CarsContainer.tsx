@@ -69,12 +69,14 @@ const CarsContainer = () => {
       </div>
       <div className="grid grid-cols-1 gap-5 px-5 text-white md:grid-cols-2 lg:grid-cols-3">
         {error && <p>{error}</p>}
-        {cars.length > 0 ? (
-          cars.map((car) => <Car key={car._id} {...car} />)
-        ) : (
-          <p>No cars available</p>
-        )}
+        {cars.length > 0 && cars.map((car) => <Car key={car._id} {...car} />)}
       </div>
+
+      {cars.length == 0 && (
+        <p className="mx-auto font-mono text-3xl font-bold text-center text-white ">
+          No cars.
+        </p>
+      )}
     </div>
   );
 };

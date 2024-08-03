@@ -58,7 +58,7 @@ const Login = () => {
       </Helmet>
       <div className="flex flex-col items-center gap-6">
         <h1 className="text-6xl font-bold text-white">Log In.</h1>
-        <div className="h-72 w-96 pt-5 md:h-[350px] md:w-[630px] rounded-lg bg-neutral-400 bg-opacity-75 grid place-content-center">
+        <div className="h-72 w-80 pt-5 md:h-[350px] md:w-[630px] rounded-lg bg-neutral-400 bg-opacity-75 grid place-content-center">
           <form
             className="flex flex-col items-center gap-5 md:gap-10"
             onSubmit={handleSubmit(onSubmit)}

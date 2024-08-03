@@ -107,7 +107,7 @@ const SearchBox = () => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-6 mt-5 md:justify-between md:gap-3 md:w-[700px]">
+      <div className="flex flex-col gap-6 mt-5 md:justify-between md:gap-3 md:w-[700px] lg:flex-row lg:w-[1440px]">
         <select
           value={selectedMake}
           className="h-24 p-3 font-mono font-bold text-xl md:text-3xl rounded-lg shadow-lg lg:w-[450px] place-content-center"

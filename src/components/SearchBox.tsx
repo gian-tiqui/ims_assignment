@@ -96,7 +96,7 @@ const SearchBox = () => {
       <div className="mt-10 md:mt-20 rounded-lg shadow-lg lg:w-[1440px] p-2 grid place-content-center h-24">
         <div className="flex items-center justify-center w-80 font-semibold md:w-full lg:w-[1100px] pb-1 text-2xl md:text-3xl md:font-semibold text-neutral-400 placeholder-neutral-400 border-b-2 border-b-neutral-400">
           {!input && (
-            <BiSearch className="absolute left-[70px] lg:left-[600px]" />
+            <BiSearch className="absolute left-[70px] md:left-[300px] lg:left-[600px]" />
           )}
           <input
             placeholder="I'm looking for a..."
@@ -107,7 +107,7 @@ const SearchBox = () => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-6 mt-5 md:flex-row md:justify-between md:gap-0">
+      <div className="flex flex-col gap-6 mt-5 md:flex-row md:justify-between md:gap-3">
         <select
           value={selectedMake}
           className="h-24 p-3 font-mono font-bold text-xl md:text-3xl rounded-lg shadow-lg lg:w-[450px] place-content-center"
